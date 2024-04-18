@@ -6,4 +6,4 @@ nginx:
       - host: plone.cluster
         paths:
           - path: /
-            pathType: Prefix
+            pathType: ImplementationSpecific

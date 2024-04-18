@@ -20,11 +20,20 @@ kubectl create namespace demo
 kubectl apply -n demo -f db-pvc.yaml
 ```
 
+Edit your ``/etc/hosts`` file and append ``plone.cluster`` to the line with `... cluster-manager-0 ...`.
+
+
 ## Install Helm chart
 
 Ensure you do not have any service blocking localhost port 3000 and 8080. Stop them otherwise to free the ports.
 
 Helm charts are not released yet. In my case the Helm chart is git cloned in my workspace coredev folder. Adapt the path to your needs.
+
+```shell
+git clone https://github.com/plone/helm-charts.git ~/ws/cdev/helm-charts
+```
+
+Then install the chart with the following command.
 
 ```shell
 helm upgrade --namespace demo --install plone --values values.yaml ~/ws/cdev/helm-charts/plone6-volto-pg-nginx-varnish/
@@ -49,5 +58,6 @@ Now we can access the nginx to see the Volto frontend.
 ```shell
 kubectl port-forward -n demo service/plone-nginx 8081
 ```
-Then go to http://localhost:8081 and you should see the Volto frontend.
+
+Then go to http://plone.cluster and you should see the Volto frontend.
 
