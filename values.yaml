@@ -1,0 +1,9 @@
+nginx:
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    hosts:
+      - host: plone.cluster
+        paths:
+          - path: /
+            pathType: Prefix
